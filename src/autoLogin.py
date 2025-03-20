@@ -18,7 +18,7 @@ def get_webdriver():
 
     if os.path.exists(chrome_driver_path):
         options = webdriver.ChromeOptions()
-        options.add_argument("--headless=new")
+        # options.add_argument("--headless=new")
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
@@ -33,7 +33,7 @@ def get_webdriver():
 
     elif os.path.exists(firefox_driver_path):
         options = webdriver.FirefoxOptions()
-        options.add_argument("--headless")
+       #  options.add_argument("--headless")
 
         service = webdriver.FirefoxService(executable_path=firefox_driver_path)
         return webdriver.Firefox(service=service, options=options), "firefox"
@@ -112,4 +112,4 @@ def automate_punch_in():
         driver.quit()  # Ensure browser closes
 
 if __name__ == "__main__":
-    automate_punch_in()  # Runs immediately when executed
+    automate_punch_in() 

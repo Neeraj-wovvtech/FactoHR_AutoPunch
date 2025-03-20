@@ -1,13 +1,13 @@
 import time
 import os
-import decrypt  # Decrypt credentials
+from decrypt import decrypt_credentials  # Decrypt credentials
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # Decrypt username and password and fetch Website details
-USERNAME, PASSWORD, URL = decrypt.decrypt_credentials()
+USERNAME, PASSWORD, URL = decrypt_credentials()
 
 # Detect available WebDriver
 def get_webdriver():
@@ -18,7 +18,7 @@ def get_webdriver():
 
     if os.path.exists(chrome_driver_path):
         options = webdriver.ChromeOptions()
-        options.add_argument("--headless=new")
+        # options.add_argument("--headless=new")
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
@@ -33,7 +33,7 @@ def get_webdriver():
 
     elif os.path.exists(firefox_driver_path):
         options = webdriver.FirefoxOptions()
-        options.add_argument("--headless")
+        # options.add_argument("--headless")
 
         service = webdriver.FirefoxService(executable_path=firefox_driver_path)
         return webdriver.Firefox(service=service, options=options), "firefox"
@@ -119,42 +119,4 @@ def automate_punch_out():
     driver.quit()  # Ensure browser closes
 
 if __name__ == "__main__":
-  automate_punch_out()  # Runs immediately when executed
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  automate_punch_out()

@@ -59,13 +59,11 @@ if __name__ == "__main__":
     # Step 2: Determine if we should run login or logout script
     current_time = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%H:%M")
     logging.info(f"Current time is {current_time}.")
-    run_script("src/autoLogin.py")
-
-    # if is_time_in_range(*LOGIN_TIME_RANGE):
-    #     logging.info(f"Current time {current_time} is within the login time range.")
-    #     run_script("src/autoLogin.py")
-    # elif is_time_in_range(*LOGOUT_TIME_RANGE):
-    #     logging.info(f"Current time {current_time} is within the logout time range.")
-    #     run_script("src/autoLogout.py")
-    # else:
-    #     logging.warning(f"Current time {current_time} is not within the scheduled time range. Exiting...")
+    if is_time_in_range(*LOGIN_TIME_RANGE):
+        logging.info(f"Current time {current_time} is within the login time range.")
+        run_script("src/autoLogin.py")
+    elif is_time_in_range(*LOGOUT_TIME_RANGE):
+        logging.info(f"Current time {current_time} is within the logout time range.")
+        run_script("src/autoLogout.py")
+    else:
+        logging.warning(f"Current time {current_time} is not within the scheduled time range. Exiting...")
