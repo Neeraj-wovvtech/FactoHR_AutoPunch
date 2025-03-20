@@ -1,0 +1,14 @@
+FactoHR_AutoPunch
+├── .env
+├── .gitignore
+├── main.py
+├── README.md
+├── requirements.txt
+├── src
+│   ├── autoLogin.py
+│   ├── autoLogout.py
+│   ├── decrypt.py
+│   ├── encrypt.py
+└── webdrivers
+    ├── chromedriver.exe
+    └── geckodriver.exe
