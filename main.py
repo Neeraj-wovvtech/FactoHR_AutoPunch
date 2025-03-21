@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Define execution time ranges
-LOGIN_TIME_RANGE = ("09:30", "10:00")
+LOGIN_TIME_RANGE = ("09:20", "10:00")
 LOGOUT_TIME_RANGE = ("19:30", "20:00")
 
 # Load .env variables if available

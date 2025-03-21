@@ -1,4 +1,4 @@
-# FactoHR Scheduler  
+# FactoHR_AutoPunch
 
 Automate FactoHR login, punch-in, and logout using Selenium for **Chrome** and **Firefox**.  
 Supports **secure credential encryption** and **automatic WebDriver selection**.  
@@ -43,14 +43,14 @@ pip install -r requirements.txt
 
 Since WebDriver **is not included**, download and place it in the `webdrivers/` folder.  
 
-### ** ChromeDriver (For Chrome)**  
+### **ChromeDriver (For Chrome)**
 - **Find your Chrome version**:  
   - Open **Chrome** → Go to `chrome://settings/help` → Note the version.  
 - **Download ChromeDriver**:  
   - [ChromeDriver Download](https://googlechromelabs.github.io/chrome-for-testing/)  
 - **Extract and place it inside `webdrivers/`**  
 
-### ** GeckoDriver (For Firefox)**  
+### **GeckoDriver (For Firefox)**
 - **Download GeckoDriver**:  
   - [GeckoDriver Download](https://github.com/mozilla/geckodriver/releases)  
 - **Extract and place it inside `webdrivers/`**  
@@ -70,13 +70,22 @@ python main.py
 
 ## **4. Automating Execution (Scheduling)**  
 
-### **Windows Task Scheduler**  
+### **Windows Task Scheduler: AutoPunchIN**  
 1. Open **Task Scheduler** (`Win + R → taskschd.msc`)  
 2. Click **Create Basic Task**  
 3. **Trigger:** Select `Daily`  
 4. **Action:** Select `Start a Program`  
-   - **Program:** `python.exe`  
-   - **Arguments:** `"C:\path\to\FactoHR_AutoPunch\src\main.py"`  
+   - **Program:** `C:\path\to\FactoHR_AutoPunch\venv\Scripts\python.exe`  
+   - **Arguments:** `"C:\path\to\FactoHR_AutoPunch\src\autoLogin.py"`  
+5. Click **Finish**  
+
+### **Windows Task Scheduler: AutoPunchOUT**  
+1. Open **Task Scheduler** (`Win + R → taskschd.msc`)  
+2. Click **Create Basic Task**  
+3. **Trigger:** Select `Daily`  
+4. **Action:** Select `Start a Program`  
+   - **Program:** `C:\path\to\FactoHR_AutoPunch\venv\Scripts\python.exe`  
+   - **Arguments:** `"C:\path\to\FactoHR_AutoPunch\src\autoLogout.py"`  
 5. Click **Finish**  
 
 ### **Replit Deployment (For Cloud Execution)**  
@@ -98,12 +107,12 @@ FactoHR_AutoPunch
 ├── .gitignore
 ├── README.md
 ├── requirements.txt
+├── main.py                 # Handles scheduling & execution
 ├── src
 │   ├── autoLogin.py        # Unified login script
 │   ├── autoLogout.py       # Unified logout script
 │   ├── decrypt.py          # Securely decrypt credentials
 │   ├── encrypt.py          # Encrypt credentials on first run
-│   ├── main.py             # Handles scheduling & execution
 └── webdrivers
     ├── chromedriver.exe    # Chrome WebDriver (User must download)
     ├── geckodriver.exe     # Firefox WebDriver (User must download)

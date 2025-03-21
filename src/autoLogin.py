@@ -70,6 +70,15 @@ def automate_punch_in():
 
         print("Waiting for Punch In button...")
         try:
+            # Check if an iframe exists
+            iframes = driver.find_elements(By.TAG_NAME, "iframe")
+            print(f"Found {len(iframes)} iframes.")
+
+            # If there's at least one iframe, switch to the first one
+            if len(iframes) > 0:
+                driver.switch_to.frame(iframes[0])
+                print("Switched to first iframe.")
+
             # Wait until the button is present
             punch_in_button = WebDriverWait(driver, 30).until(
                 EC.presence_of_element_located((By.XPATH, "//button[contains(text(), 'Punch In')]")))
