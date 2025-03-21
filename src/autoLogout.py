@@ -18,7 +18,7 @@ def get_webdriver():
 
     if os.path.exists(chrome_driver_path):
         options = webdriver.ChromeOptions()
-        # options.add_argument("--headless=new")
+        options.add_argument("--headless=new")
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
@@ -94,7 +94,8 @@ def automate_punch_out():
       # Try normal click first
       print("Clicking Punch Out button...")
       punch_out_button.click()
-      time.sleep(5)
+      time.sleep(10)
+    
     except Exception as e:
       print(f"Error: {e}")
       print("Trying JavaScript click...")
@@ -106,25 +107,21 @@ def automate_punch_out():
     
     # Logout Process
     print("Clicking profile dropdown...")
-    WebDriverWait(driver,
-                  10).until(EC.element_to_be_clickable(
-                      (By.ID, "logInUser"))).click()
+    WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.ID, "logInUser"))).click()
     time.sleep(10)
 
     print("Clicking Logout button...")
-    WebDriverWait(driver,
-                  10).until(EC.element_to_be_clickable(
-                      (By.ID, "btnLogOut"))).click()
+    WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.ID, "btnLogOut"))).click()
 
-    time.sleep(10)
+    time.sleep(15)
 
     print("Successfully logged out!")
-
 
   except Exception as e:
     print(f"Error: {e}")
 
   finally:
+    time.sleep(5)
     driver.quit()  # Ensure browser closes
 
 if __name__ == "__main__":
