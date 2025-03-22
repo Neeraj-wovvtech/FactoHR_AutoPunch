@@ -1,7 +1,6 @@
 from datetime import datetime
 from src import encrypt
 import os, sys, logging, pytz, subprocess
-from dotenv import load_dotenv
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG,
@@ -10,9 +9,6 @@ logging.basicConfig(level=logging.DEBUG,
 # Define execution time ranges
 LOGIN_TIME_RANGE = ("09:20", "10:00")
 LOGOUT_TIME_RANGE = ("19:30", "20:00")
-
-# Load .env variables if available
-load_dotenv()
 
 def check_and_store_credentials():
     """If .env file doesn't exist, ask for username, password, and FactoHR URL, then encrypt them."""
@@ -40,16 +36,16 @@ def is_time_in_range(start, end):
     logging.debug(f"Current time is {current_time}. Checking against range: {start} - {end}.")
     return start <= current_time <= end
 
-def run_script(script_name):
-    """Run the specified script using the virtual environment's Python."""
-    venv_python = os.path.join(os.path.dirname(sys.executable), "python")  # Gets venv Python path
+def run_script(script_path):
+    """Run the specified script using the Python from the activated virtual environment."""
+    venv_python = sys.executable  # Gets the currently activated venv Python
 
-    logging.info(f"Executing {script_name} using {venv_python}...")
+    logging.info(f"Executing {script_path} using {venv_python}...")
     try:
-        result = subprocess.run([venv_python, script_name], check=True, capture_output=True, text=True)
-        logging.info(f"Output of {script_name}:\n{result.stdout}")
+        result = subprocess.run([venv_python, script_path], check=True, capture_output=True, text=True)
+        logging.info(f"Output of {script_path}:\n{result.stdout}")
     except subprocess.CalledProcessError as e:
-        logging.error(f"An error occurred while executing {script_name}: {e.stderr}")
+        logging.error(f"An error occurred while executing {script_path}: {e.stderr}")
 
 
 if __name__ == "__main__":

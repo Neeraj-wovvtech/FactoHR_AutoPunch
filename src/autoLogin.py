@@ -105,7 +105,7 @@ def automate_punch_in():
         print("Clicking profile dropdown...")
         WebDriverWait(driver, 15).until(
             EC.element_to_be_clickable((By.ID, "logInUser"))).click()
-        time.sleep(10)
+        time.sleep(5)
 
         print("Clicking Logout button...")
         WebDriverWait(driver, 15).until(
