@@ -1,5 +1,5 @@
 @echo off
-cd /d C:\Users\user1\dist\prod-out
+cd /d D:\Neeraj_Documents\Code\FactoHR_AutoPunch\main.py
 call venv\Scripts\activate
 python main.py
 echo.
